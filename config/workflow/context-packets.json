@@ -1,0 +1,149 @@
+{
+  "context_version": "1.0",
+  "dynamic_contexts": [
+    "video"
+  ],
+  "packets": {
+    "project": [
+      "source_script:PROJECT",
+      "director_analysis:PROJECT",
+      "media_implementation_plan:PROJECT",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "casting": [
+      "casting_brief:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "actor_identity_view": [
+      "actor_baseline:{character_id}",
+      "casting_brief:{character_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "look_state": [
+      "character_role_profile:{scope_id}",
+      "unit_plan:PROJECT",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "look_component": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "costume_reference": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "costume_structure": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "fabric_detail": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "costume_structure:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "costume_worn_view": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "costume_structure:{scope_id}",
+      "fabric_detail:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "hair_batch": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "makeup_batch": [
+      "actor_baseline:{character_id}",
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "accessory_batch": [
+      "look_state_plan:{character_id}",
+      "look_component_requirement:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "character_fusion": [
+      "actor_baseline:{character_id}",
+      "look_state_plan:{character_id}",
+      "look_component:{scope_id}",
+      "costume_structure:{scope_id}",
+      "fabric_detail:{scope_id}",
+      "costume_worn_view:{scope_id}",
+      "hair_batch:{scope_id}",
+      "makeup_batch:{scope_id}",
+      "accessory_batch:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "character_four_view": [
+      "canonical_character_look:{scope_id}",
+      "look_state_plan:{character_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "character_atomic_view": [
+      "character_four_view:{scope_id}",
+      "visual_style:PROJECT"
+    ],
+    "scene_master": [
+      "scene_functional_brief:{scope_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "scene_map": [
+      "scene_master:{scope_id}",
+      "scene_view_set:{scope_id}",
+      "scene_functional_brief:{scope_id}"
+    ],
+    "scene_view": [
+      "scene_master:{scope_id}"
+    ],
+    "blocking": [
+      "scene_map:{scope_id}",
+      "unit_plan:PROJECT",
+      "visual_style:PROJECT"
+    ],
+    "shot": [
+      "source_script:PROJECT",
+      "scene_map:{scene_id}",
+      "blocking_plan:{scene_id}",
+      "camera_plan:{scene_id}",
+      "scene_master:{scene_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "prompt": [
+      "shot_plan:{unit_id}",
+      "editorial_plan:{unit_id}",
+      "executable_unit_plan:PROJECT",
+      "unit_assets:{unit_id}",
+      "visual_style:PROJECT",
+      "production_spec:PROJECT"
+    ],
+    "video": [
+      "target_prompt:{unit_id}",
+      "unit_assets:{unit_id}",
+      "character_four_view:{character_id}:{look_state_id}",
+      "scene_master:{scene_id}",
+      "actual_tailframe:{unit_id}"
+    ]
+  }
+}

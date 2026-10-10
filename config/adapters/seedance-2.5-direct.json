@@ -1,0 +1,32 @@
+{
+  "adapter_id": "seedance-2.5-direct",
+  "prompt_contract": "seedance-2.5-direct-v1",
+  "route": {
+    "delivery_method": "model",
+    "target_model": "seedance-2.5",
+    "api_platform": null
+  },
+  "capabilities": {
+    "api_submission": false,
+    "image_references": true,
+    "audio_references": false,
+    "prompt_validator": "validate_seedance_prompt"
+  },
+  "limits": {
+    "unit_duration_seconds": {"min": 4, "max": 30, "integer": true, "evidence": "user_contract"},
+    "prompt_characters": null,
+    "reference_images": null,
+    "reference_audio": null
+  },
+  "prompt": {
+    "sections": [
+      "全局声音与字幕约束",
+      "素材说明",
+      "一句话概述",
+      "全局视觉设定",
+      "详细情节",
+      "全局连续性与结尾约束"
+    ],
+    "optional_sections": ["素材说明"]
+  }
+}

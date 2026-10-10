@@ -1,0 +1,22 @@
+{
+  "catalog_version": "1.0",
+  "scope": "scene-or-shot-group",
+  "selection_limit": null,
+  "strategies": [
+    {"id":"COV-MASTER-ANCHOR","goal":"以全局空间镜建立人物、入口和关键锚点","applies_when":"后续近景需要共享清楚的空间基准","execution":"先建立可读空间，后续镜头保持轴线和世界方向","failure_signals":["后续镜头无法定位","主镜头没有信息价值"]},
+    {"id":"COV-TWO-SHOT-TO-SINGLE","goal":"从双人关系转入承担当前信息的人物单人镜头","applies_when":"关系已经建立且台词或反应需要提高权重","execution":"双人镜建立距离，按台词或视线触发切到单人镜","failure_signals":["切镜无信息增益","人物左右关系翻转"]},
+    {"id":"COV-REACTION","goal":"让事件后果落到可见反应","applies_when":"反应改变观众对事件或关系的理解","execution":"在刺激落点后切到受影响主体并保留反应完成时间","failure_signals":["反应早于刺激","反应镜只是重复信息"]},
+    {"id":"COV-EYELINE-MATCH","goal":"用视线落点连接观察者与目标","applies_when":"观察对象需要被明确揭示","execution":"先锁定视线方向，再切到匹配世界方位的目标","failure_signals":["看错方向","目标方位与 scene map 冲突"]},
+    {"id":"COV-MATCH-ON-ACTION","goal":"在同一动作中切换景别并保持连续","applies_when":"动作可提供清楚且可复现的切点","execution":"前镜输出动作状态，后镜从同一相位和方向接入","failure_signals":["动作重复或跳步","手别或道具状态改变"]},
+    {"id":"COV-SOUND-BRIDGE","goal":"用连续声音连接空间、时间或视角变化","applies_when":"声音已在剧本或声场设计中存在","execution":"明确声音起点、跨切持续区间和落点","failure_signals":["新增未授权声音","声音在切点无故中断"]},
+    {"id":"COV-ENTRY-EXIT","goal":"用人物或物体进出画触发切换","applies_when":"出入改变空间占用或叙事焦点","execution":"切前确认离画边界，切后从匹配方向承接","failure_signals":["进出方向冲突","主体瞬移"]},
+    {"id":"COV-RESULT-HOLD","goal":"在动作或决定后保留可读结果","applies_when":"后态将影响后续镜头或单元","execution":"最后一镜稳定保持人物、道具和空间结果","failure_signals":["高潮后立即切断","关键后态不可辨"]},
+    {"id":"COV-SCALE-ESTABLISH","goal":"先说明战场、群体或大型空间规模","applies_when":"中近景无法解释参与者和方向","execution":"用宽景锁定阵营、路线和主要锚点","failure_signals":["宽景没有方向信息","规模镜与后续空间冲突"]},
+    {"id":"COV-IMMERSIVE-FOLLOW","goal":"随主行动者穿越空间并保持方向感","applies_when":"主角路线是动作理解的骨架","execution":"固定跟随侧、路线和终点，沿途只承载一条主行动链","failure_signals":["跟错主体","路径穿越障碍或阵营"]},
+    {"id":"COV-IMPACT-INSERT","goal":"证明决定性接触、道具动作或状态改变","applies_when":"全景无法清楚证明关键因果","execution":"在接触峰值切入可读近景，随后回到结果","failure_signals":["插入镜脱离空间","接触与前后动作不连续"]},
+    {"id":"COV-SCALE-CONTRAST","goal":"以大全景和近距离体验形成规模对比","applies_when":"场面规模与个体压力都必须成立","execution":"每次景别变化承担不同信息，不重复同一动作","failure_signals":["只追求景别跳变","个体与群体空间无法对应"]},
+    {"id":"COV-MOTION-MATCH","goal":"用一致动势连接不同机位或主体","applies_when":"相邻镜头有明确方向和速度对应","execution":"锁定切前动势、切后进入方向和动作相位","failure_signals":["屏幕方向反转","速度无故突变"]},
+    {"id":"COV-ACTION-ESCALATION","goal":"让动作覆盖从建立、推进到转折逐步升级","applies_when":"动作场景存在清楚阶段而非连续同强度","execution":"每镜增加一个新的风险、目标或后果","failure_signals":["重复打斗片段","高潮前已耗尽变化"]},
+    {"id":"COV-RELEASE-TO-STILLNESS","goal":"从高速动作落到稳定结果画面","applies_when":"观众需要读取胜负、损伤或新空间状态","execution":"最后一次动势完成后转入静止或低速保持","failure_signals":["结尾仍无目的晃动","结果没有稳定观察时间"]}
+  ]
+}

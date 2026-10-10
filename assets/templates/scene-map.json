@@ -1,0 +1,103 @@
+{
+  "_guide": {
+    "用途": "换剧本/换场景时复制本文件为 scene_map_<单元>.json，按实际场面调度填写；它是空间因果的唯一事实源。",
+    "坐标系": "x=东向+、y=北向+；方位角 orientation 为自正北顺时针：0=N,90=E,180=S,270=W。",
+    "统一字段": "坐标一律用 position（{x,y} 或 [x,y]）；机位/对象朝向一律用数值 orientation（0-360）。旧字段 pos/orientation_bearing/front_bearing 仍兼容但不必再用。",
+    "必填": "scene_id/continuous_space_id/scene_ids/space_boundary/fixed_anchors/primary_axis/walkable_zones/objects/camera；scene_ids 绑定共享该空间的 Script IR 剧情场次；space_boundary 是真实空间边界；对象必填 object_id/object_type/position/orientation/state/relations（relations 允许空列表）。",
+    "机位": "camera 用 {镜头id: 机位} 分组；每个机位给 position、placement(inside/outside/attached)、side(轴线安全侧)、数值 orientation、fov_half(默认80)、visible_anchors、forbidden_anchors。placement=attached 时还必须给 attached_to，且引用已知对象或锚点。",
+    "逐镜调度": "人物、车辆、可移动道具等动态对象必须在 blocking_states 中按镜头保存位置快照；每个引用动态对象的 camera 必须绑定 blocking_state_id，不得复用 objects 中的代表位置冒充全场状态。",
+    "动态风险": "dynamic/mixed 场景必须填写 persistent_landmarks、occupancy_zones、scale_anchors；逐镜人物坐标不得进入适用禁区。",
+    "画面坐标": "camera.screen_positions 用锚点/object_id → left/center/right 声明可见主体的画面位置；该值由机位坐标投影核对，不等于世界坐标的东/西。",
+    "车内镜头": "机位加 inside=车辆object_id；车辆 object_type=vehicle 且 role=story-object 时另需 parking_slot/front_direction/driver_side/seats；visible_anchors 用 {anchor,through_window}，through_window ∈ windshield/rear_window/left_window/right_window。",
+    "防假通过": "只要场景里有坐标，每个引用锚点的机位就必须给数值坐标+朝向，否则报 spatial-camera-geometry-missing；某机位确实不做空间校验时显式写 \"spatial\":\"skipped\"。",
+    "生成约束文本": "python3 scripts/check_spatial_contract.py --constraints 本文件，可直接得到每镜‘可含/禁见’的 prompt 约束。",
+    "用户确认稿": "填写 user_review 后运行 python3 scripts/render_blocking_map_text.py 本文件 reviews/scene-map-text.md；从同一坐标直接输出空间骨架、人物与关键物件、必要走位、带房间边界/门/机位内外关系和C1方向箭头的俯视平面图、镜头站位及必须保持项；按连续空间确认，不按镜头或生成单元重复确认。",
+    "校验": "python3 scripts/check_spatial_contract.py 本文件"
+  },
+  "scene_id": "SCENE_ID",
+  "continuous_space_id": "SCENE_ID",
+  "scene_ids": ["SCRIPT_SCENE_ID"],
+  "coordinate_note": "x=东+, y=北+, 方位角自正北顺时针",
+  "user_review": {
+    "space_name": "用户可读空间名",
+    "map_version": "v1",
+    "review_phase": "camera_plan",
+    "tracked_entities": ["actor_A"],
+    "entity_labels": {"actor_A": "角色A", "anchor_door": "北门"},
+    "state_sequence": [{"state_id": "state_shot_01", "label": "角色走到房间中央", "unit_ids": ["U01"], "shot_ids": ["shot_01_example"]}],
+    "user_visible_rules": ["角色A不得进入示例禁入区。"]
+  },
+  "primary_axis": "南北纵深（按实际主轴改写）",
+  "space_boundary": {
+    "boundary_type": "room",
+    "polygon": [[-7, -7], [7, -7], [7, 9], [-7, 9]]
+  },
+  "walkable_zones": [
+    {"zone_id": "main", "polygon": [[-7, -7], [7, -7], [7, 9], [-7, 9]]}
+  ],
+  "fixed_anchors": [
+    {"anchor_id": "anchor_door", "position": {"x": 0, "y": 8}, "features": "北墙门（示例：机位朝北时应可见）"},
+    {"anchor_id": "anchor_behind", "position": {"x": 0, "y": -6}, "features": "南侧物体（示例：朝南机位的机后，禁见）"}
+  ],
+  "persistent_landmarks": [
+    {
+      "anchor_id": "anchor_door",
+      "dimensions": {"width_m": 1.0, "height_m": 2.1},
+      "traversability": "passable",
+      "visibility_policy": "may_leave_frame",
+      "environment_cover_limit": "门框轮廓始终可辨"
+    }
+  ],
+  "occupancy_zones": [
+    {
+      "zone_id": "example_forbidden_zone",
+      "polygon": [[5, 5], [7, 5], [7, 7], [5, 7]],
+      "access": "forbidden",
+      "applies_to": ["actor_A"],
+      "reason": "示例禁入区；按实际剧情改写"
+    }
+  ],
+  "scale_anchors": [
+    {
+      "anchor_id": "anchor_door",
+      "real_size_m": 2.1,
+      "comparison": "人物身高略低于门框高度"
+    }
+  ],
+  "objects": [
+    {
+      "object_id": "actor_A",
+      "object_type": "person",
+      "role": "story-object",
+      "position": {"x": 0, "y": 0},
+      "orientation": 0,
+      "state": "起始状态",
+      "relations": [],
+      "visible_anchors": []
+    }
+  ],
+  "blocking_states": {
+    "state_shot_01": {"objects": {
+      "actor_A": {"position": {"x": -2, "y": 2}}
+    }}
+  },
+  "movement_routes": [],
+  "camera": {
+    "shot_01_example": {
+      "position": [0, -4],
+      "placement": "inside",
+      "side": "轴线安全侧（按实际改写）",
+      "orientation": 0,
+      "fov_half": 80,
+      "blocking_state_id": "state_shot_01",
+      "visible_anchors": ["actor_A", "anchor_door"],
+      "screen_positions": {"actor_A": "left", "anchor_door": "center"},
+      "forbidden_anchors": [
+        {"anchor": "anchor_behind", "reason": "该机位面朝北，南侧物体在机后，不应入镜"}
+      ]
+    }
+  },
+  "shot_states": [
+    {"shot_id": "shot_01_example", "before": "动作前状态", "after": "动作后状态"}
+  ]
+}

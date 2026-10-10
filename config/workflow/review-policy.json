@@ -1,0 +1,70 @@
+{
+  "policy_version": "1.2",
+  "default_mode": "co-direct",
+  "artifact_statuses": [
+    "DRAFT",
+    "AWAITING_USER",
+    "USER_APPROVED",
+    "USER_REJECTED",
+    "STALE",
+    "SUPERSEDED"
+  ],
+  "decisions": [
+    "approve",
+    "request_changes",
+    "reject",
+    "regenerate",
+    "select_candidate",
+    "defer",
+    "continue_provisionally"
+  ],
+  "approval_decisions": ["approve", "select_candidate"],
+  "explicit_user_decision_required": true,
+  "approval_binding": [
+    "artifact_id",
+    "artifact_version",
+    "artifact_sha256",
+    "user_statement",
+    "decided_at"
+  ],
+  "compatibility_only_artifact_types": {
+    "actor_identity_view": "旧项目身份视图；新项目仅在四视图不足以支撑具体镜头时按需生成",
+    "actor_identity_set": "旧项目身份集；新项目不创建且不参与任何阶段 Gate"
+  },
+  "required_reviews": [
+    "source_script",
+    "director_analysis",
+    "media_implementation_plan",
+    "visual_style",
+    "production_spec",
+    "unit_plan",
+    "casting_brief",
+    "actor_baseline",
+    "look_state_plan",
+    "look_component_requirement",
+    "look_component",
+    "costume_structure",
+    "fabric_detail",
+    "costume_worn_view",
+    "hair_batch",
+    "makeup_batch",
+    "accessory_batch",
+    "canonical_character_look",
+    "character_four_view",
+    "atomic_character_view",
+    "scene_functional_brief",
+    "scene_master",
+    "scene_view",
+    "scene_view_set",
+    "scene_map",
+    "blocking_plan",
+    "camera_plan",
+    "shot_plan",
+    "editorial_plan",
+    "executable_unit_plan",
+    "unit_assets",
+    "target_prompt",
+    "generated_video",
+    "actual_tailframe"
+  ]
+}

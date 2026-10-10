@@ -1,0 +1,14 @@
+{
+  "current_schema_version": "2.2",
+  "supported_schema_versions": ["1.x", "2.0", "2.1", "2.2"],
+  "new_project": {
+    "schema_version": "2.2",
+    "planning_mode": "shot-card-first"
+  },
+  "capabilities": {
+    "1.x": ["legacy_read_only", "storyboard_compatibility"],
+    "2.0": ["shot_card_first"],
+    "2.1": ["shot_card_first", "strategy_selection"],
+    "2.2": ["shot_card_first", "strategy_selection", "scene_direction", "coverage_plan"]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "workflow_version": "1.0",
+  "states": [
+    "SOURCE_READY",
+    "SCRIPT_LOCKED",
+    "SPACE_READY",
+    "SHOTS_LOCKED",
+    "UNITS_READY",
+    "ASSETS_READY",
+    "PROMPTS_VALIDATED",
+    "IN_PRODUCTION",
+    "USER_REVIEW_PENDING",
+    "USER_ACCEPTED",
+    "USER_REJECTED",
+    "DELIVERED"
+  ],
+  "transitions": {
+    "SOURCE_READY": ["SCRIPT_LOCKED"],
+    "SCRIPT_LOCKED": ["SPACE_READY"],
+    "SPACE_READY": ["SHOTS_LOCKED"],
+    "SHOTS_LOCKED": ["UNITS_READY"],
+    "UNITS_READY": ["ASSETS_READY"],
+    "ASSETS_READY": ["PROMPTS_VALIDATED"],
+    "PROMPTS_VALIDATED": ["IN_PRODUCTION", "DELIVERED"],
+    "IN_PRODUCTION": ["USER_REVIEW_PENDING"],
+    "USER_REVIEW_PENDING": ["USER_ACCEPTED", "USER_REJECTED"],
+    "USER_REJECTED": ["PROMPTS_VALIDATED"],
+    "USER_ACCEPTED": ["DELIVERED"],
+    "DELIVERED": []
+  },
+  "base_required_fields": ["workflow_id", "script_ir", "delivery"],
+  "required_fields_by_gate": {
+    "SPACE_READY": ["scene_maps", "spatial_reviews", "artifacts"],
+    "SHOTS_LOCKED": ["shots", "scene_direction_briefs", "coverage_plans"],
+    "UNITS_READY": ["units", "coverage"],
+    "ASSETS_READY": ["assets", "execution_target"],
+    "PROMPTS_VALIDATED": []
+  },
+  "unit_production_states": [
+    "PLANNED_BLOCKED",
+    "PROMPT_READY",
+    "GENERATED_AWAITING_USER",
+    "USER_ACCEPTED",
+    "USER_REJECTED"
+  ],
+  "execution_target_required_from": "ASSETS_READY",
+  "resolved_prompt_required_from": "PROMPTS_VALIDATED"
+}

@@ -1,0 +1,15 @@
+{
+  "adapter_id": "openai-compatible-images-v1",
+  "transport": "openai-compatible",
+  "base_url_env": "IMAGE_API_BASE_URL",
+  "token_env": "IMAGE_API_TOKEN",
+  "model_env": "IMAGE_API_TEXT_MODEL",
+  "reference_model_env": "IMAGE_API_REFERENCE_MODEL",
+  "endpoint": "/images/generations",
+  "edit_endpoint": "/images/edits",
+  "max_images_per_request": 1,
+  "max_edits_per_request": 1,
+  "capabilities": ["text_to_image", "reference_edit", "multi_reference_fusion"],
+  "default_size": "2:3",
+  "contract_source": "project_config"
+}

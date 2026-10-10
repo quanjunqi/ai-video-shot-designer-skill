@@ -1,0 +1,44 @@
+{
+  "adapter_id": "minimax_h3_zm_u24",
+  "prompt_contract": "autodl-minimax-h3-v1",
+  "route": {
+    "delivery_method": "api",
+    "target_model": "minimax-h3",
+    "api_platform": "autodl-art"
+  },
+  "capabilities": {
+    "api_submission": true,
+    "image_references": true,
+    "audio_references": true,
+    "prompt_validator": "validate_h3_prompt"
+  },
+  "limits": {
+    "unit_duration_seconds": {"min": 1, "max": 15, "integer": true, "evidence": "adapter_verified"},
+    "prompt_characters": {"min": 1, "max": 10000, "evidence": "adapter_verified"},
+    "reference_images": {"min": 1, "max": 9, "evidence": "adapter_verified"},
+    "reference_audio": {"min": 0, "max": 3, "evidence": "adapter_verified"},
+    "resolutions": ["480p竖", "768p竖", "480p横", "768p横", "480p(1:1)", "768p(1:1)"]
+  },
+  "api": {
+    "base_url": "https://autodl.art/api/v1/comfyui/comfyui_workflow",
+    "workflow": "minimax_h3_zm_u24",
+    "image_field_prefix": "ref_image_",
+    "audio_field_prefix": "ref_audio_"
+  },
+  "prompt": {
+    "fields": [
+      "subject_definitions",
+      "summary",
+      "retention_analysis",
+      "detailed_description",
+      "overall_soundscape",
+      "non_diegetic_music"
+    ],
+    "known_prefixes": [
+      "[reference generation]",
+      "[reference generation + image reference]",
+      "[video editing + audio reuse]",
+      "[video editing]"
+    ]
+  }
+}

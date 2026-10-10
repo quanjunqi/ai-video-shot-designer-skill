@@ -1,0 +1,22 @@
+{
+  "stage_version": "1.2",
+  "stages": ["SOURCE_READY", "SCRIPT_LOCKED", "DIRECTION_READY", "SPEC_READY", "COVERAGE_READY",
+    "CAST_READY", "LOOKS_READY", "SCENES_READY", "SPACE_READY", "BLOCKING_READY", "SHOTS_READY",
+    "UNITS_READY", "PROMPTS_READY", "IN_PRODUCTION", "DELIVERED"],
+  "requirements": {
+    "SCRIPT_LOCKED": [{"type":"source_script","scope":"PROJECT"}],
+    "DIRECTION_READY": [{"type":"director_analysis","scope":"PROJECT"},{"type":"media_implementation_plan","scope":"PROJECT"}],
+    "SPEC_READY": [{"type":"visual_style","scope":"PROJECT"},{"type":"production_spec","scope":"PROJECT"}],
+    "COVERAGE_READY": [{"type":"unit_plan","scope":"PROJECT"}],
+    "CAST_READY": [{"type":"casting_brief","scope_set":"characters"},{"type":"actor_baseline","scope_set":"characters"}],
+    "LOOKS_READY": [{"type":"look_state_plan","scope_set":"characters"},{"type":"canonical_character_look","scope_set":"look_states"},{"type":"character_four_view","scope_set":"look_states"}],
+    "SCENES_READY": [{"type":"scene_functional_brief","scope_set":"scenes"},{"type":"scene_master","scope_set":"scenes"},{"type":"scene_view_set","scope_set":"scenes"}],
+    "SPACE_READY": [{"type":"scene_map","scope_set":"scenes"}],
+    "BLOCKING_READY": [{"type":"blocking_plan","scope_set":"scenes"},{"type":"camera_plan","scope_set":"scenes"}],
+    "SHOTS_READY": [{"type":"shot_plan","scope_set":"units"},{"type":"editorial_plan","scope_set":"units"}],
+    "UNITS_READY": [{"type":"executable_unit_plan","scope":"PROJECT"}],
+    "PROMPTS_READY": [{"type":"unit_assets","scope_set":"units"},{"type":"target_prompt","scope_set":"units"}],
+    "IN_PRODUCTION": [],
+    "DELIVERED": [{"type":"generated_video","scope_set":"units"}]
+  }
+}

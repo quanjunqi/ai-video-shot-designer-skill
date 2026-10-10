@@ -1,0 +1,37 @@
+{
+  "adapter_id": "minimax-h3-direct",
+  "prompt_contract": "minimax-h3-direct-v1",
+  "route": {
+    "delivery_method": "model",
+    "target_model": "minimax-h3",
+    "api_platform": null
+  },
+  "capabilities": {
+    "api_submission": false,
+    "image_references": true,
+    "audio_references": true,
+    "prompt_validator": "validate_h3_prompt"
+  },
+  "limits": {
+    "unit_duration_seconds": {"min": 1, "max": 15, "evidence": "project_contract"},
+    "prompt_characters": null,
+    "reference_images": null,
+    "reference_audio": null
+  },
+  "prompt": {
+    "fields": [
+      "subject_definitions",
+      "summary",
+      "retention_analysis",
+      "detailed_description",
+      "overall_soundscape",
+      "non_diegetic_music"
+    ],
+    "known_prefixes": [
+      "[reference generation]",
+      "[reference generation + image reference]",
+      "[video editing + audio reuse]",
+      "[video editing]"
+    ]
+  }
+}
